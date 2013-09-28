@@ -22,6 +22,17 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
   </head>
+  <script src="bootstrap/dist/js/jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+              var companyName = "company";
+              $("#optionName1").text(companyName);
+
+              var friendName = "friend";
+              $("#optionName2").text(friendName);
+          });
+
+  </script>
 
   <body>
 
@@ -64,10 +75,31 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1>Sticky footer with fixed navbar</h1>
+          <center><h1>Job vs Friend</h1></center>
         </div>
-        <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
-        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+          <div class="row">
+              <div class="col-sm-6 col-md-5" style="float:left">
+                <div class="thumbnail">
+                  <img data-src="holder.js/300x200" alt="...">
+                  <div class="caption">
+                   <center><h3><text id="optionName1"></text></h3></center>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-5" style="float:right">
+                <div class="thumbnail">
+                  <img data-src="holder.js/300x200" alt="...">
+                  <div class="caption">
+                   <center><h3><text id="optionName2"></text></h3></center>
+
+
+                  </div>
+                </div>
+
+              </div>
+        </div>
       </div>
     </div>
 
@@ -81,7 +113,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/dist/js/jquery.js"></script>
+
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
