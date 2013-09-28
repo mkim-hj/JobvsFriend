@@ -8,12 +8,10 @@ module.exports = function(grunt) {
 
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*!\n' +
-              '* Bootstrap v<%= pkg.version %> by @fat and @mdo\n' +
+    banner: '/**\n' +
+              '* <%= pkg.name %>.js v<%= pkg.version %> by @fat and @mdo\n' +
               '* Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-              '* Licensed under <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
-              '*\n' +
-              '* Designed and built with all the love in the world by @mdo and @fat.\n' +
+              '* <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
               '*/\n',
     jqueryCheck: 'if (!jQuery) { throw new Error(\"Bootstrap requires jQuery\") }\n\n',
 
@@ -63,8 +61,7 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        banner: '<%= banner %>',
-        report: 'min'
+        banner: '<%= banner %>'
       },
       bootstrap: {
         src: ['<%= concat.bootstrap.dest %>'],
@@ -74,8 +71,7 @@ module.exports = function(grunt) {
 
     recess: {
       options: {
-        compile: true,
-        banner: '<%= banner %>'
+        compile: true
       },
       bootstrap: {
         src: ['less/bootstrap.less'],
@@ -214,7 +210,8 @@ module.exports = function(grunt) {
       return 'var __' + type + ' = ' + JSON.stringify(files) + '\n'
     }
 
+    var customize = fs.readFileSync('customize.html', 'utf-8')
     var files = getFiles('js') + getFiles('less') + getFiles('fonts')
-    fs.writeFileSync('docs-assets/js/raw-files.js', files)
+    fs.writeFileSync('assets/js/raw-files.js', files)
   });
 };
