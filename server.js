@@ -89,6 +89,7 @@ app.post("/:uid/:friend/:company/:salary/:result/", function(req,res){
 
 app.get("/:uid/",function(req,res){
   //get stats from DB and return
+  res.send(200);
 });
 
 app.get("/test", function(req,res) {
