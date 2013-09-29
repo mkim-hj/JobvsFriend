@@ -62,8 +62,8 @@ app.get("/:uid/:access_token/", function(req,res){
     });
 
     // get a random friend
-    random_friend = friends[5]["name"]
-    random_salary = 150000
+    random_friend = friends[Math.floor((Math.random()*10))]["name"]
+    random_salary = Math.floor((Math.random()*150000)) + 100000
 
     var all_companies = ["google", "microsoft", "apple", "facebook", "linkedin"]
     random_company = all_companies[Math.floor((Math.random()*5))];
