@@ -68,10 +68,8 @@ app.get("/:uid/:access_token/", function(req,res){
         "friendship_duration" : 5,
         "count": 1
     }
-
     res.send(200, duel);
   });
-
 });
 
 app.post("/:uid/:friend/:company/:salary/:result/", function(req,res){
