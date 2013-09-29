@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"pg" : "2.6.2",
+		"express" : "*",
+		"request" : "*"
+	}
+}
