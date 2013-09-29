@@ -94,15 +94,5 @@ function query_db(query_string, callback){
   });
 }
 
-/*
-var test_url = "https://graph.facebook.com/661776686/friends?limit=10&access_token=CAACEdEose0cBADZAGNc1PCVgZAcPam2oFmAFZBpRLLjSsQ3i2hXYsZCRHLK1RJ8x1GxLnwt0mNiJrDF37dQvJzmnPlJu3xZBtHT3CfZCo4LEnQfdHfvfmpf9FwCbSRRyzkFqAKjao0LUWbRHWAzZBY93F6aY0xTyiCKoOH1qZAkXeOIhBXXnYBAautwGkSg9sLwZD/";
-request(test_url, function(re, resp, body){
-  friends = JSON.parse(body)["data"];
-  console.log(friends[5]);
-});
-*/
-
-
-
 console.log("Listening on 5000");
 app.listen(process.env.PORT || 5000);
