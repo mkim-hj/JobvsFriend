@@ -13,6 +13,8 @@ app.use(function(req, res, next){
   next();
 });
 
+app.use('/', express.static(__dirname+'/frontend/index.html'))
+
 app.post("/:uid/", function(req,res){
   query = "INSERT INTO users VALUES (" + req.params.uid + ", " + true + ")";
   query_db(query);
@@ -24,7 +26,7 @@ app.get("/:uid/:access_token/", function(req,res){
   //get previous duels if any
   //logic to generate duel
   //write new user to table
-  var url = "https://graph.facebook.com/" + req.params.uid + "/friends?limit=10&access_token=" + req.params.access_token;
+  var url = "https://graph.facebook.com/" + req.params.uid + "/friends?limit=10&access_token=" + req.params.access_token+"/";
   request(url, function(re,resp,body){
 
     //list of friends based on uid and access token
