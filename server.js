@@ -13,7 +13,12 @@ app.use(function(req, res, next){
   next();
 });
 
-app.use('/', express.static(__dirname+'/frontend/index.html'))
+app.use('/boostrap', express.static(__dirname+'/frontend/bootstrap'))
+
+
+app.get('/', function(req, res) {
+  res.sendfile(__dirname+'/frontend/index.html')
+});
 
 app.post("/:uid/", function(req,res){
   query = "INSERT INTO users VALUES (" + req.params.uid + ", " + true + ")";
