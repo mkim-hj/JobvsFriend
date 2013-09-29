@@ -20,13 +20,10 @@
               // have logged in to the app.
               $("#login").hide();
               document.getElementById("index").style.visibility="visible";
-              document.getElementById("index").style.height="1000px";
-              var uid = response.authResponse.userID;
-              var access_token =   FB.getAuthResponse()['accessToken'];
-              console.log('User Id = '+uid);
-              console.log('Access Token = '+ access_token);
-
-              
+              // document.getElementById("index").style.height="1000px";
+              window.uid = response.authResponse.userID;
+              window.access_token =   FB.getAuthResponse()['accessToken'];
+              reloadDuel();
             } else if (response.status === 'not_authorized') {
               // In this case, the person is logged into Facebook, but not into the app, so we call
               // FB.login() to prompt them to do so. 

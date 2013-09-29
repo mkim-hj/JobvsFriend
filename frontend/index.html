@@ -17,41 +17,10 @@
     <link href="sticky-footer-navbar.css" rel="stylesheet">
   </head>
   <script src="bootstrap/dist/js/jquery.js"></script>
-  <script type="text/javascript">
-        $(document).ready(function () {
 
-          var reloadDuel = function() {
-              console.log("11");
-              // NEED TO USE A GET REQUEST TO GET THE JSON OBJECT
-              var companyName = "GET_THIS_BULLSHIT"
-              var friendName = "GETFRIEND"
-
-              $("#optionName1").text(companyName);
-              $("#optionName2").text(friendName);
-
-              var optionImage1 = document.getElementById("optionImage1");
-              var optionImage2 = document.getElementById("optionImage2");
-              optionImage1.src = "images/google.jpg";
-              optionImage2.src = "images/anand.jpg";
-            };
-
-            reloadDuel();
-
-
-            $( "#optionImage1" ).click(function() {
-              //POST REQUEST
-                    reloadDuel();
-            });
-
-            $( "#optionImage2" ).click(function() {
-              //POST REQUEST
-                    reloadDuel();
-            });
-      });
-
-  </script>
 
   <body>
+    <div id="wrap">
     <div id="fb-root"></div>
      <div id="login">
       <center><h1> Job vs Friend </h1>
@@ -59,6 +28,57 @@
       <!-- Begin page content -->
     <div id="fb-root"></div>
     <script src="fblogin.js"></script>
+
+      <script type="text/javascript">
+      window.uid = "";
+      window.access_token="";
+      var reloadDuel = function() {
+        if(documentReady && window.uid){
+          // NEED TO USE A GET REQUEST TO GET THE JSON OBJECT
+          console.log(window.uid);
+          companyName = "";
+          friendName="";
+           $.ajax({
+              url: "http://Jobvsfriend.herokuapp.com/{uid}/{access_token == ",
+              type: "GET",
+              success: function(data) {
+                data = JSON.parse(data)
+                companyName = data["company"]
+                salary = data["salary"]
+                friendName = data["friend"]
+                friendshipDuration = data["friendship_duration"]
+                count = data["count"]
+            }});
+                //end of ajax
+              $("#optionName1").text(companyName);
+              $("#optionName2").text(friendName);
+              optionImage1 = document.getElementById("optionImage1");
+              optionImage2 = document.getElementById("optionImage2");
+              optionImage1.src = "images/"+companyName+".jpg";
+              optionImage2.src = "images/anand.jpg";
+      }};
+
+      $(document).ready(function () {
+        window.documentReady = true;
+        reloadDuel();
+        $( "#optionImage1" ).click(function() {
+              // $ajax({
+              //   url: "http://Jobvsfriend.herokuapp.com/",
+              //   type: "POST",
+              //   data: data,
+              //   success: function(data) {
+                  
+              //   }
+              // })
+                reloadDuel();
+        });
+        $( "#optionImage2" ).click(function() {
+          //POST REQUEST
+                reloadDuel();
+        });
+      });
+
+  </script>
 
     <center><fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button></center>
     </div>
@@ -69,11 +89,12 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <center><h1>Job vs Friend</h1></center>
+          <center><h1>Job vs Friend</h1>
+                <h4><em> Because everybody has a price. </em></h4></center>
         </div>
               <div class="col-sm-6 col-md-5" style="float:left">
                 <div class="thumbnail">
-                 <img id="optionImage1" src ="" alt="...">
+                 <img id="optionImage1" class="handle" src ="" alt="...">
                   <div class="caption">
                    <center><h3><text id="optionName1"></text></h3></center>
 
@@ -81,23 +102,15 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6 col-md-5" style="float:right">
-                <div class="thumbnail">
-                  <img id="optionImage2" src="" alt="...">
-                  <div class="caption">
-                   <center><h3><text id="optionName2"></text></h3></center>
 
-
+                <div class="col-sm-6 col-md-5" style="float:right">
+                  <div class="thumbnail">
+                    <img id="optionImage2" class="handle" src="" alt="...">
+                    <div class="caption">
+                     <center><h3><text id="optionName2"></text></h3></center>
+                    </div>
                   </div>
                 </div>
-
-              </div>
-      </div>
-    </div>
-
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
       </div>
     </div>
 
