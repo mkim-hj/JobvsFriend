@@ -8,6 +8,11 @@ var APP_SECRET = "YOUR_APP_SECRET_HERE"
 
 app = express()
 
+app.use(function(req, res, next){
+  console.log('%s %s', req.method, req.url);
+  next();
+});
+
 app.post("/:uid/", function(req,res){
   query = "INSERT INTO users VALUES (" + req.params.uid + ", " + true + ")";
   query_db(query);
@@ -60,6 +65,10 @@ app.get("/:uid/",function(req,res){
   //get stats from DB and return
 });
 
+app.get("/test", function(req,res) {
+	res.send("Hello!");
+});
+
 function query_db(query_string, callback){
     pg.connect(conString, function(err, client, done) {
       if(err) {
@@ -79,4 +88,5 @@ function query_db(query_string, callback){
   });
 }
 
-app.listen(5000);
+console.log("Listening on 5000");
+app.listen(process.env.PORT || 5000);

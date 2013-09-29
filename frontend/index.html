@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,75 +11,69 @@
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="sticky-footer-navbar.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
   </head>
   <script src="bootstrap/dist/js/jquery.js"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
-              var companyName = "company";
-              $("#optionName1").text(companyName);
+        $(document).ready(function () {
 
-              var friendName = "friend";
+          var reloadDuel = function() {
+              console.log("11");
+              // NEED TO USE A GET REQUEST TO GET THE JSON OBJECT
+              var companyName = "GET_THIS_BULLSHIT"
+              var friendName = "GETFRIEND"
+
+              $("#optionName1").text(companyName);
               $("#optionName2").text(friendName);
-          });
+
+              var optionImage1 = document.getElementById("optionImage1");
+              var optionImage2 = document.getElementById("optionImage2");
+              optionImage1.src = "images/google.jpg";
+              optionImage2.src = "images/anand.jpg";
+            };
+
+            reloadDuel();
+
+
+            $( "#optionImage1" ).click(function() {
+              //POST REQUEST
+                    reloadDuel();
+            });
+
+            $( "#optionImage2" ).click(function() {
+              //POST REQUEST
+                    reloadDuel();
+            });
+      });
 
   </script>
 
   <body>
+    <div id="fb-root"></div>
+     <div id="login">
+      <center><h1> Job vs Friend </h1>
+      <h4><em> Because everybody has a price. </em></h4></center>
+      <!-- Begin page content -->
+    <div id="fb-root"></div>
+    <script src="fblogin.js"></script>
+
+    <center><fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button></center>
+    </div>
 
     <!-- Wrap all page content here -->
-    <div id="wrap">
-
-      <!-- Fixed navbar -->
-      <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-          </div>
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
+    <div id="index" style="visibility:hidden">
 
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
           <center><h1>Job vs Friend</h1></center>
         </div>
-          <div class="row">
               <div class="col-sm-6 col-md-5" style="float:left">
                 <div class="thumbnail">
-                  <img src="images/google_logo.jpg" alt="...">
+                 <img id="optionImage1" src ="" alt="...">
                   <div class="caption">
                    <center><h3><text id="optionName1"></text></h3></center>
 
@@ -90,7 +83,7 @@
               </div>
               <div class="col-sm-6 col-md-5" style="float:right">
                 <div class="thumbnail">
-                  <img data-src="holder.js/300x200" alt="...">
+                  <img id="optionImage2" src="" alt="...">
                   <div class="caption">
                    <center><h3><text id="optionName2"></text></h3></center>
 
@@ -99,7 +92,6 @@
                 </div>
 
               </div>
-        </div>
       </div>
     </div>
 
@@ -109,11 +101,8 @@
       </div>
     </div>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
+
   </body>
 </html>
