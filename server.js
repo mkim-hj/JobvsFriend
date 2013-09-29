@@ -17,8 +17,14 @@ app.use('/', express.static(__dirname+'/frontend/index.html'))
 
 app.post("/:uid/", function(req,res){
   query = "INSERT INTO users VALUES (" + req.params.uid + ", " + true + ")";
-  query_db(query);
-  res.send(200);
+  query_db(query, function(err, res) {
+  	if (err) {
+  		res.send(500);
+  	}
+  	else {
+  		res.send(200);
+  	}
+  });
 });
 
 app.get("/:uid/:access_token/", function(req,res){
@@ -36,12 +42,18 @@ app.get("/:uid/:access_token/", function(req,res){
     friends = JSON.parse(body)["data"];
     if(!friends){
       res.send(500);
+      return;
     }
 
     //get previous duels
     query = "SELECT * from duels where player_fb_id = " + req.params.uid;
-    query_db(query,function(result){
-      console.log(result);
+    query_db(query,function(err, result){
+    	if (err) {
+    		return;
+    	}
+    	else {
+			console.log(result);
+    	}
     });
 
     // get a random friend
@@ -57,7 +69,7 @@ app.get("/:uid/:access_token/", function(req,res){
         "count": 1
     }
 
-    res.json(200, duel);
+    res.send(200, duel);
   });
 
 });
@@ -65,8 +77,14 @@ app.get("/:uid/:access_token/", function(req,res){
 app.post("/:uid/:friend/:company/:salary/:result/", function(req,res){
   //write to DB result
   query = "INSERT INTO duels (player_fb_id,friend_fb_id,company_id,salary) VALUES ('" + req.params.uid + "', '" + req.params.friend + "', '" + req.params.company + "', '" + req.params.salary + "', '" + req.params.result + "')";
-  query_db(query);
-  res.status(200);
+  query_db(query, function(err, res) {
+  	if (err) {
+  		res.send(500);
+  	}
+  	else {
+  		res.send(200);
+  	}
+  });
 });
 
 app.get("/:uid/",function(req,res){
@@ -81,6 +99,7 @@ function query_db(query_string, callback){
     pg.connect(conString, function(err, client, done) {
       if(err) {
           console.error('error fetching client from pool', err);
+          callback(err, null);
           return;
       }
       client.query(query_string, function(err, result) {
@@ -89,9 +108,10 @@ function query_db(query_string, callback){
 
         if(err) {
           console.error('error running query', err);
+          callback(err, null);
           return;
         }
-        callback(result);
+        callback(null, result);
       });
   });
 }
