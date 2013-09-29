@@ -17,6 +17,41 @@
     <link href="sticky-footer-navbar.css" rel="stylesheet">
   </head>
   <script src="bootstrap/dist/js/jquery.js"></script>
+  <script type="text/javascript">
+        $(document).ready(function () {
+
+          var reloadDuel = function() {
+              console.log("11");
+              // NEED TO USE A GET REQUEST TO GET THE JSON OBJECT
+              var companyName = "GET_THIS_BULLSHIT"
+              var friendName = "GETFRIEND"
+
+              $("#optionName1").text(companyName);
+              $("#optionName2").text(friendName);
+
+              var optionImage1 = document.getElementById("optionImage1");
+              var optionImage2 = document.getElementById("optionImage2");
+              optionImage1.src = "images/google.jpg";
+              optionImage2.src = "images/anand.jpg";
+            };
+
+            reloadDuel();
+
+
+            $( "#optionImage1" ).click(function() {
+              //POST REQUEST
+                    reloadDuel();
+            });
+
+            $( "#optionImage2" ).click(function() {
+              //POST REQUEST
+                    reloadDuel();
+            });
+      });
+
+  </script>
+
+  <script
   <body>
     <div id="fb-root"></div>
      <div id="login">
@@ -39,7 +74,7 @@
         </div>
               <div class="col-sm-6 col-md-5" style="float:left">
                 <div class="thumbnail">
-                  <img src="images/google_logo.jpg" alt="...">
+                 <img id="optionImage1" src ="" alt="...">
                   <div class="caption">
                    <center><h3><text id="optionName1"></text></h3></center>
 
@@ -49,7 +84,7 @@
               </div>
               <div class="col-sm-6 col-md-5" style="float:right">
                 <div class="thumbnail">
-                  <img data-src="holder.js/300x200" alt="...">
+                  <img id="optionImage2" src="" alt="...">
                   <div class="caption">
                    <center><h3><text id="optionName2"></text></h3></center>
 

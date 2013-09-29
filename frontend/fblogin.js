@@ -18,6 +18,7 @@
               // The response object is returned with a status field that lets the app know the current
               // login status of the person. In this case, we're handling the situation where they 
               // have logged in to the app.
+              console.log("hi");
               $("#login").hide();
               document.getElementById("index").style.visibility="visible";
               document.getElementById("index").style.height="1000px";
