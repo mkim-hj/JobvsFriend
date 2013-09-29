@@ -60,9 +60,11 @@ app.get("/:uid/:access_token/", function(req,res){
     random_friend = friends[5]["name"]
     random_salary = 150000
 
+    var all_companies = ["google", "microsoft", "apple", "facebook", "linkedin"]
+    random_company = all_companies[Math.floor((Math.random()*5))];
     //(logic) generate duel and send back to front-end
     var duel = {
-        "company": "Google",
+        "company": random_company,
         "salary": random_salary,
         "friend" : random_friend,
         "friendship_duration" : 5,
