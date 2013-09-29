@@ -15,7 +15,9 @@ app.use(function(req, res, next){
 
 console.log(__dirname+'/frontend/fblogin.js');
 app.use('/bootstrap', express.static(__dirname+'/frontend/bootstrap'));
-
+app.get('/images/anand.jpg', function(req, res) {
+	res.sendfile(__dirname+'/frontend/images/anand.jpg');
+});
 app.get('/fblogin.js', function(req, res) {
   res.sendfile(__dirname+'/frontend/fblogin.js');
 });
