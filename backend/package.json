@@ -1,10 +1,7 @@
 {
-  "name": "jobvsfriend",
-  "description": "app",
-  "author": "Akshay Narayan <akshay.narayan@berkeley.edu>",
-  "dependencies": {
-    "express": "2.3.x",
-    "pg": "*"
-  },
-  "engine": "node >= 0.10.0"
+	"dependencies": {
+		"pg" : "2.6.2",
+		"express" : "*",
+		"request" : "*"
+	}
 }
