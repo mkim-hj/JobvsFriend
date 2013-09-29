@@ -16,7 +16,7 @@ app.use(function(req, res, next){
 app.post("/:uid/", function(req,res){
   query = "INSERT INTO users VALUES (" + req.params.uid + ", " + true + ")";
   query_db(query);
-  res.status(200);
+  res.send(200);
 });
 
 app.get("/:uid/:access_token/", function(req,res){
@@ -25,10 +25,16 @@ app.get("/:uid/:access_token/", function(req,res){
   //logic to generate duel
   //write new user to table
   var url = "https://graph.facebook.com/" + req.params.uid + "/friends?limit=10&access_token=" + req.params.access_token;
-  request(url, function(re,resp,body){
-
+  request(url, function(err,resp,body){
+    if(err || resp.status < 200 || resp.status >= 400){
+        res.send(500);
+        return;
+    }
     //list of friends based on uid and access token
     friends = JSON.parse(body)["data"];
+    if(!friends){
+      res.send(500);
+    }
 
     //get previous duels
     query = "SELECT * from duels where player_fb_id = " + req.params.uid;
@@ -87,6 +93,16 @@ function query_db(query_string, callback){
       });
   });
 }
+
+/*
+var test_url = "https://graph.facebook.com/661776686/friends?limit=10&access_token=CAACEdEose0cBADZAGNc1PCVgZAcPam2oFmAFZBpRLLjSsQ3i2hXYsZCRHLK1RJ8x1GxLnwt0mNiJrDF37dQvJzmnPlJu3xZBtHT3CfZCo4LEnQfdHfvfmpf9FwCbSRRyzkFqAKjao0LUWbRHWAzZBY93F6aY0xTyiCKoOH1qZAkXeOIhBXXnYBAautwGkSg9sLwZD/";
+request(test_url, function(re, resp, body){
+  friends = JSON.parse(body)["data"];
+  console.log(friends[5]);
+});
+*/
+
+
 
 console.log("Listening on 5000");
 app.listen(process.env.PORT || 5000);
