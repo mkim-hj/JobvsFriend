@@ -1,7 +1,9 @@
 var pg = require('pg');
-var app = require('app');
+var express = require('express');
 var conString = "postgres://@localhost:5432/game";
 //"postgres://username:password@hostname:port/database"
+
+app = express()
 
 app.post("/:uid/", function(req,res){
   query = "INSERT INTO users VALUES (" + req.params.uid + ", " + true + ")";
