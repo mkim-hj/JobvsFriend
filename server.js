@@ -65,4 +65,4 @@ function query_db(query_string){
 }
 
 console.log("Listening on 5000");
-app.listen(5000);
+app.listen(process.env.PORT || 5000);
