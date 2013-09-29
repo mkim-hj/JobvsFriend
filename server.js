@@ -13,7 +13,18 @@ app.use(function(req, res, next){
   next();
 });
 
-app.use('/', express.static(__dirname+'/frontend/index.html'))
+console.log(__dirname+'/frontend/fblogin.js');
+app.use('/bootstrap', express.static(__dirname+'/frontend/bootstrap'));
+app.get('/images/anand.jpg', function(req, res) {
+	res.sendfile(__dirname+'/frontend/images/anand.jpg');
+});
+app.get('/fblogin.js', function(req, res) {
+  res.sendfile(__dirname+'/frontend/fblogin.js');
+});
+
+app.get('/', function(req, res) {
+  res.sendfile(__dirname+'/frontend/index.html')
+});
 
 app.post("/:uid/", function(req,res){
   query = "INSERT INTO users VALUES (" + req.params.uid + ", " + true + ")";
@@ -70,10 +81,8 @@ app.get("/:uid/:access_token/", function(req,res){
         "friendship_duration" : 5,
         "count": 1
     }
-
     res.send(200, duel);
   });
-
 });
 
 app.post("/:uid/:friend/:company/:salary/:result/", function(req,res){
