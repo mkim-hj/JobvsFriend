@@ -13,8 +13,12 @@ app.use(function(req, res, next){
   next();
 });
 
-app.use('/boostrap', express.static(__dirname+'/frontend/bootstrap'))
+console.log(__dirname+'/frontend/fblogin.js');
+app.use('/bootstrap', express.static(__dirname+'/frontend/bootstrap'));
 
+app.get('/fblogin.js', function(req, res) {
+  res.sendfile(__dirname+'/frontend/fblogin.js');
+});
 
 app.get('/', function(req, res) {
   res.sendfile(__dirname+'/frontend/index.html')
