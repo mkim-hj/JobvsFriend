@@ -1,38 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
-
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <script src="bootstrap/dist/js/jquery.js"></script>
-
-  <body>
-    <div id="wrap">
-      <center><h1> Job vs Friend </h1>
-      <h4><em> Because everybody has a price. </em></h4></center>
-      <!-- Begin page content -->
-      <div class="container">
-    </div>
-    <div id="fb-root"></div>
-    <script>
       window.fbAsyncInit = function() {
         // init the FB JS SDK
         FB.init({
@@ -53,7 +18,10 @@
               // The response object is returned with a status field that lets the app know the current
               // login status of the person. In this case, we're handling the situation where they 
               // have logged in to the app.
-              window.location.href="index.html";
+              $("#login").hide();
+              document.getElementById("index").style.visibility="visible";
+              document.getElementById("index").style.height="1000px";
+
             } else if (response.status === 'not_authorized') {
               // In this case, the person is logged into Facebook, but not into the app, so we call
               // FB.login() to prompt them to do so. 
@@ -85,30 +53,3 @@
          js.src = "//connect.facebook.net/en_US/all.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-      <!--
-    Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-    present a graphical Login button that triggers the FB.login() function when clicked.
-
-    Learn more about options for the login button plugin:
-    /docs/reference/plugins/login/ -->
-
-    <center><fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button></center>
-    <!--     <center><span id="fbLogout" onclick="fbLogout()"><a class="fb_button fb_button_medium"><span class="fb_button_text">Logout</span></a></span></center> -->
-
-    <!-- Wrap all page content here -->
-
-
-    </div>
-
-  
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
