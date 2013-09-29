@@ -1,6 +1,6 @@
 CREATE DATABASE game;
 CREATE TABLE users (fb_id integer unique, logged_in boolean);
-CREATE TABLE duels (player_fb_id integer, friend_fb_id integer, company_id integer, salary integer, result boolean);
+CREATE TABLE duels (id SERIAL PRIMARY KEY, duelid player_fb_id integer, friend_fb_id integer, company_id integer, salary integer, result boolean);
 CREATE TABLE companies (id integer, name varchar);
 INSERT INTO companies VALUES (1, "Microsoft")
 INSERT INTO companies VALUES (2, "Apple")
